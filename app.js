@@ -2,17 +2,24 @@ const express = require('express');
 const app = express();
 const port = 80;
 
+// Log periodically to demonstrate runtime logs (every 5 seconds)
+let logCounter = 0;
+setInterval(() => {
+    logCounter++;
+    console.log(`Log number: ${logCounter} - Server is running`);
+}, 5000);
+
 app.get('/', (req, res) => {
-	for (let i = 1; ; i++) {
-		console.log(`Log number: ${i}`);
-	}
-	res.send('Hello World!');
+    console.log('GET / - Request received');
+    res.send('Hello World!');
 });
 
 app.get('/api/:id', (req, res) => {
-	res.send(`Get resource for ${req.params.id}.`);
+    console.log(`GET /api/${req.params.id} - Request received`);
+    res.send(`Get resource for ${req.params.id}.`);
 });
 
 app.listen(port, () => {
-	console.log(`Example app listening at http://localhost:${port}`);
+    console.log(`Example app listening at http://localhost:${port}`);
+    console.log('Runtime logs will appear here and be captured by Stackyn');
 });
