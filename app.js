@@ -3,6 +3,9 @@ const app = express();
 const port = 80;
 
 app.get('/', (req, res) => {
+	for (let i = 1; ; i++) {
+		console.log(`Log number: ${i}`);
+	}
 	res.send('Hello World!');
 });
 
