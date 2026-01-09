@@ -1,4 +1,5 @@
 const express = require('express');
+require('dotenv').config();
 const app = express();
 const port = 80;
 
@@ -6,7 +7,7 @@ const port = 80;
 let logCounter = 0;
 setInterval(() => {
     logCounter++;
-    console.log(`Log number: ${logCounter} - Server is running`);
+    console.log(`Log number: ${logCounter} - Server is running ${process.env.NAME}`);
 }, 5000);
 
 app.get('/', (req, res) => {
@@ -20,6 +21,7 @@ app.get('/api/:id', (req, res) => {
 });
 
 app.listen(port, () => {
+    console.log(`Name: ${process.env.NAME}`);
     console.log(`Example app listening at http://localhost:${port}`);
     console.log('Runtime logs will appear here and be captured by Stackyn');
 });
